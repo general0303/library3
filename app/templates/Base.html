@@ -1,0 +1,39 @@
+<html>
+    <head>
+      {% if title %}
+      <title>{{ title }} - Library</title>
+      {% else %}
+      <title>Welcome to Library</title>
+      {% endif %}
+    </head>
+    <body>
+        <div>Library:
+           <a href="{{ url_for('index') }}">Home</a>
+        {% if current_user.is_anonymous %}
+        <a href="{{ url_for('login') }}">Login</a>
+        {% else %}
+        <a href="{{ url_for('logout') }}">Logout</a>
+        {% endif %}
+        <a href="{{ url_for('show_authors') }}">List of authors</a>
+        <a href="{{ url_for('show_books') }}">List of books</a>
+        <a href="{{ url_for('add_author') }}">Add a new author</a>
+        <a href="{{ url_for('add_book') }}">Add a new book</a>
+        <a href="{{ url_for('delete_author') }}">Delete a author</a>
+        <a href="{{ url_for('delete_book') }}">Delete a book</a>
+        <a href="{{ url_for('edit_author') }}">Edit a author</a>
+        <a href="{{ url_for('edit_book') }}">Edit a book</a>
+        <a href="{{ url_for('search_books') }}">Search a book</a>
+        </div>
+        <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </body>
+</html>
