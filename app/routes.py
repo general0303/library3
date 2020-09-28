@@ -202,6 +202,9 @@ def search_books():
     if form.validate_on_submit():
         name = form.name.data
         a = Author.query.filter_by(name = name).first()
+        if a is None:
+            flash('This author is not in the library')
+            return redirect(url_for('search_books'))
         books=a.books
         return render_template('show_books.html', title='Books', books=books)
     return render_template('search_book.html', title='Search book', form=form)

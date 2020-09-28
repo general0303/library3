@@ -2,6 +2,6 @@
 
 {% block content %}
     {% for author in authors %}
-    <div><p>{{ author.name }}</p></div>
+    {% include '_author.html' %}
     {% endfor %}
 {% endblock %}

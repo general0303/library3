@@ -13,6 +13,7 @@ class User(UserMixin, db.Model):
     about_me = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
     password_hash = db.Column(db.String(128))
+    image = db.Column(db.String)
     posts = db.relationship('Post', backref='author', lazy='dynamic')
 
     def __repr__(self):
@@ -49,9 +50,16 @@ author_books=db.Table('author_books',
 class Author(db.Model):
     id=db.Column(db.Integer(), primary_key=True)
     name=db.Column(db.String(60), index=True)
+    image = db.Column(db.String)
 
     def __repr__(self):
         return '<Author {}>'.format(self.name)
+
+    def set_image(self, image):
+        self.image = image
+
+    def show_image(self):
+        return self.image
 
 
 class Book(db.Model):
