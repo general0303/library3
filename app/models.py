@@ -66,9 +66,16 @@ class Book(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(60), index=True)
     authors=db.relationship('Author', secondary=author_books, backref='books')
+    image = db.Column(db.String)
 
     def __repr__(self):
         return '<Book {}>'.format(self.name)
+
+    def set_image(self, image):
+        self.image = image
+
+    def show_image(self):
+        return self.image
 
 
 @login.user_loader

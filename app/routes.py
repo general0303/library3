@@ -233,3 +233,11 @@ def edit_profile():
         form.about_me.data = current_user.about_me
     return render_template('edit_profile.html', title='Edit Profile',
                            form=form)
+
+
+@app.route('/book/<name>')
+def book(name):
+    book = Book.query.filter_by(name=name).first_or_404()
+    authors = book.authors
+    books = authors[0].books
+    return render_template('book.html', title=book.name, book=book, books=books)
