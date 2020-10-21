@@ -9,7 +9,8 @@ from flask import request
 from werkzeug.urls import url_parse
 from app import db
 from app.forms import RegistrationForm
-from app.forms import AddAuthorForm, AddBookForm, DeleteAuthorForm, DeleteBookForm, EditAuthorForm, EditBookForm, SearchBooksForm
+from app.forms import AddAuthorForm, AddBookForm, DeleteAuthorForm, DeleteBookForm, EditAuthorForm, EditBookForm, \
+    SearchBooksForm
 from datetime import datetime
 from app.forms import EditProfileForm
 
