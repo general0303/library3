@@ -1,11 +1,27 @@
 {% extends "Base.html" %}
 
 {% block content %}
-    <h1>{{ book.name }}</h1>
-    <img src="{{ book.show_image() }}" width="160" height="200">
-    <div><p>Download the book</p></div>
-    <div><p>You might be interested:</p></div>
-     {% for book in books %}
-    <div><p><a href="{{ url_for('book', name=book.name) }}">{{  book.name }}</a></p></div>
-    {% endfor %}
+    <style>
+   table {
+    width: 100%;
+   }
+  </style>
+    <h1 align="center">{{ book.name }}</h1>
+    <table style="font-size:1.5em">
+        <tbody>
+            <tr>
+                <th><img src="{{ book.show_image() }}" width="400" height="500"></th>
+                <th>
+                    <div><p>You might be interested:</p></div>
+                    {% for book in books %}
+                    <div><p><a href="{{ url_for('book', name=book.name) }}">{{  book.name }}</a></p></div>
+                    {% endfor %}
+                </th>
+            </tr>
+            <tr>
+                <th><div><p>Download the book</p></div></th>
+                <th></th>
+            </tr>
+        </tbody>
+    </table>
 {% endblock %}
