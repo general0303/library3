@@ -7,6 +7,10 @@
    }
   </style>
     <h1 align="center">{{ book.name }}</h1>
+    <p>Authors:
+    {% for author in book.authors %}
+        {{ author.name }}
+    {% endfor %}</p>
     <table style="font-size:1.5em">
         <tbody>
             <tr>
@@ -19,7 +23,7 @@
                 </th>
             </tr>
             <tr>
-                <th><div><p>Download the book</p></div></th>
+                <th><div><p><a href="{{ book.text }}">Download the book</a></p></div></th>
                 <th></th>
             </tr>
         </tbody>
