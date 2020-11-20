@@ -36,7 +36,8 @@
         <a href="{{ url_for('delete_book') }}">Delete a book</a>
         <a href="{{ url_for('edit_author') }}">Edit an author</a>
         <a href="{{ url_for('edit_book') }}">Edit a book</a>
-        <a href="{{ url_for('search_books') }}">Search a book</a>
+        <a href="{{ url_for('search_books_by_tittle') }}">Search a book by tittle</a>
+        <a href="{{ url_for('search_books_by_author') }}">Search a book by author</a>
         </div>
         <hr>
         {% with messages = get_flashed_messages() %}

@@ -10,7 +10,7 @@ from werkzeug.urls import url_parse
 from app import db
 from app.forms import RegistrationForm
 from app.forms import AddAuthorForm, AddBookForm, DeleteAuthorForm, DeleteBookForm, EditAuthorForm, EditBookForm, \
-    SearchBooksForm
+    SearchBooksByAuthorForm, SearchBooksByTittleForm
 from datetime import datetime
 from app.forms import EditProfileForm
 
@@ -197,19 +197,33 @@ def edit_book():
     return render_template('edit_book.html', title='Edit book', form=form)
 
 
-@app.route('/search_books', methods=['GET', 'POST'])
-def search_books():
-    form = SearchBooksForm()
+@app.route('/search_books_by_author', methods=['GET', 'POST'])
+def search_books_by_author():
+    form = SearchBooksByAuthorForm()
     if form.validate_on_submit():
         name = form.name.data
         a = Author.query.filter_by(name = name).first()
         if a is None:
             flash('This author is not in the library')
-            return redirect(url_for('search_books'))
+            return redirect(url_for('search_books_by_author'))
         books=a.books
         return render_template('show_books.html', title='Books', books=books)
-    return render_template('search_book.html', title='Search book', form=form)
+    return render_template('search_book_by_author.html', title='Search book', form=form)
 
+
+@app.route('/search_books_by_tittle', methods=['GET', 'POST'])
+def search_books_by_tittle():
+    form = SearchBooksByTittleForm()
+    if form.validate_on_submit():
+        name = form.name.data
+        b = Book.query.filter_by(name = name).first()
+        if b is None:
+            flash('This author is not in the library')
+            return redirect(url_for('search_books_by_tittle'))
+        authors = b.authors
+        books = authors[0].books
+        return render_template('book.html', title=b.name, book=b, books=books)
+    return render_template('search_book_by_tittle.html', title='Search book', form=form)
 
 @app.route('/user/<username>')
 @login_required

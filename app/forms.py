@@ -68,8 +68,13 @@ class EditBookForm(FlaskForm):
     submit = SubmitField('Edit book')
 
 
-class SearchBooksForm(FlaskForm):
+class SearchBooksByAuthorForm(FlaskForm):
     name = StringField('Name of author')
+    submit = SubmitField('Search books')
+
+
+class SearchBooksByTittleForm(FlaskForm):
+    name = StringField('Tittle of book')
     submit = SubmitField('Search books')
 
 
