@@ -74,7 +74,7 @@ class SearchBooksByAuthorForm(FlaskForm):
 
 
 class SearchBooksByTitleForm(FlaskForm):
-    name = StringField('Tittle of book')
+    name = StringField('Title of book')
     submit = SubmitField('Search books')
 
 
